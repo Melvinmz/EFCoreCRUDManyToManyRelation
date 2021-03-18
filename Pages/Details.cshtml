@@ -1,0 +1,41 @@
+﻿@page
+@model CRUDMToM.Pages.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Employee.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Employee.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Employee.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Employee.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            <span>Skills</span>
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                string skills = "";
+                skills = string.Join(", ", Model.Employee.Employeeskills.Select(m => m.Skills.SkillName));
+                <span>@skills</span>
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Employee.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

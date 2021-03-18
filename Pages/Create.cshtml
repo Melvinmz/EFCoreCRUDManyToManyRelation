@@ -1,0 +1,58 @@
+﻿@page
+@model CRUDMToM.Pages.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Employee</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Employee.FirstName" class="control-label"></label>
+                <input asp-for="Employee.FirstName" class="form-control" />
+                <span asp-validation-for="Employee.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.LastName" class="control-label"></label>
+                <input asp-for="Employee.LastName" class="form-control" />
+                <span asp-validation-for="Employee.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @{ for (int i = 0; i < Model.SkillList.Count; i++)
+                    {
+                        <input asp-for="@Model.SkillList[i].Value" type="hidden" />
+                        {
+                            <input asp-for="@Model.SkillList[i].Selected" /> @Model.SkillList[i].Text
+                        }
+                        <br />
+                    }
+                }
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <label asp-for="NewSkill" class="control-label"></label>
+                    <input asp-for="NewSkill" class="form-control" />
+                    <span asp-validation-for="NewSkill" class="text-danger"></span>
+                </div>
+
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
