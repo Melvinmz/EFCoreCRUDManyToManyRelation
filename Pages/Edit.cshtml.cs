@@ -83,7 +83,8 @@ namespace CRUDMToM.Pages
                     }
                 }
             }
-            //If an assigned skill is not originally there, it is added to 
+            //If a skill is not in the edited skill list, but present
+            //in the skill list from the DB, it is added to 
             // the SkillsToRemove collection.
             foreach (Employeeskill employeeskill in EmployeeFromDB.Employeeskills)
             {
